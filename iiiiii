@@ -1,0 +1,29 @@
+--Silence Paid
+local whitelistURL = "https://raw.githubusercontent.com/seth-pogi/W-/refs/heads/main/whitelist.lua"
+local usercolorsURL = "https://raw.githubusercontent.com/seth-pogi/W-/refs/heads/main/usercolors.lua"
+
+local success1, whitelist = pcall(function()
+    return loadstring(game:HttpGet(whitelistURL, true))()
+end)
+
+local success2, userColors = pcall(function()
+    return loadstring(game:HttpGet(usercolorsURL, true))()
+end)
+
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+local userId = localPlayer.UserId
+
+if not success1 or type(whitelist) ~= "table" then
+    localPlayer:Kick("Failed to load")
+    return
+end
+
+if not whitelist[userId] then
+    localPlayer:Kick("You are not whitelisted.")
+    return
+end
+
+local mainColor = (success2 and userColors[userId])
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/SLH-Seth/iiiiiiiiiiiiiii/refs/heads/main/iiiiiiiiiiii'))()
